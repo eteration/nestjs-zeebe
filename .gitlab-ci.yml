@@ -1,0 +1,16 @@
+
+image: node:latest
+
+stages:
+  - publish
+
+deploy:
+  stage: publish
+  only:
+    - main
+  tags:
+    - eteration-devops
+  script:
+    - npm i
+    - npm run build
+    - npm publish
