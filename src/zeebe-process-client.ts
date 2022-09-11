@@ -3,6 +3,7 @@ import { Redis } from 'ioredis';
 import { RedisService } from 'nestjs-redis';
 import { ZBClient } from 'zeebe-node';
 import { v4 as uuidv4 } from 'uuid';
+import { version } from 'os';
 
 export interface IProcessVariables {
   [key: string]: any;
@@ -13,7 +14,7 @@ export interface CreateProcessInstanceResponse {
    * The unique key identifying the process definition (e.g. returned from a process
    * in the DeployProcessResponse message)
    */
-  readonly processKey: string;
+  // readonly processKey: string;
   /**
    * The BPMN process ID of the process definition
    */
@@ -61,9 +62,13 @@ export class ZeebeProcessClient {
   async createProcessInstance<Variables = IProcessVariables>(_config: {
     bpmnProcessId: string;
     variables: Variables;
-    version: number;
+    version?: number;
   }): Promise<CreateProcessInstanceResponse> {
-    return this.zbClient.createProcessInstance(_config);
+    const { bpmnProcessId, variables, version } = _config;
+    if(version)
+      return this.zbClient.createProcessInstance({bpmnProcessId, variables, version });
+    return this.zbClient.createProcessInstance(bpmnProcessId, variables);
+
   }
 
   async createProcessInstanceWithResult<

@@ -1,6 +1,6 @@
 {
   "name": "@eteration/nestjs-zeebe",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "Zeebe (Camunda Cloud) Integration with NestJS",
   "repository": {
     "type": "git",
@@ -19,18 +19,20 @@
     "access": "public",
     "main": "dist/index.d.ts"
   },
-  "dependencies": {
-    "@golevelup/nestjs-discovery": "^3.0.0",
-    "@nestjs/common": "^8.0.0",
-    "@nestjs/config": "^1.2.0",
-    "@nestjs/core": "^8.0.0",
-    "ioredis": "^4.28.5",
+  "peerDependencies": {
+    "@golevelup/nestjs-discovery": "*",
+    "@nestjs/common": "*",
+    "@nestjs/config": "*",
+    "@nestjs/core": "*",
+    
+    "ioredis": "*",
     "nestjs-redis": "git+https://github.com/skunight/nestjs-redis.git",
-    "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0",
-    "zeebe-node": "^2.4.0"
+    "reflect-metadata": "*",
+    "rimraf": "*",
+    "rxjs": "*",
+    "zeebe-node": "^8.0.3"
   },
+  
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
